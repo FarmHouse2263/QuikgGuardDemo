@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "118780314746",
+    "project_id": "quickguard-3d3bb",
+    "storage_bucket": "quickguard-3d3bb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118780314746:android:64a27a7060e4451854a7c3",
+        "android_client_info": {
+          "package_name": "com.example.quikguard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrtprW6fB8eegJtpi7WICIfYTtQIkUddM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
