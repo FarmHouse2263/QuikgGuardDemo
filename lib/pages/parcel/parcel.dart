@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:quikguardtrue/pages/parcel/InputPage.dart';
 import 'package:quikguardtrue/pages/parcel/StockPage.dart';
 import 'package:quikguardtrue/pages/profile.dart';
+import 'package:quikguardtrue/pages/sefty/security_guard/PPEApprovalScreen_sefty.dart';
+import 'package:quikguardtrue/pages/sefty/security_guard/PPERequestScreen.dart';
+import 'package:quikguardtrue/pages/sefty/security_guard/request_return.dart';
+import 'package:quikguardtrue/pages/sefty/security_guard/return_request_list.dart';
 import 'package:quikguardtrue/pages/sefty/security_guard/security_guard.dart';
 
 class Parcel extends StatefulWidget {
@@ -84,46 +88,46 @@ class _ParcelState extends State<Parcel> {
                 break;
               case 'คำขอเบิก PPE':
                 onTap = () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) =>
-                  //         PPERequestPage(employeeId: widget.employeeId),
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          PPERequestScreen(),
+                    ),
+                  );
                 };
                 break;
               case 'คำขอคืน PPE':
                 onTap = () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) =>
-                  //         PPEReturnPage(employeeId: widget.employeeId),
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          RequestReturn(),
+                    ),
+                  );
                 };
                 break;
               case 'รายการอนุมัติคำขอเบิก PPE':
                 onTap = () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) =>
-                  //         ApproveRequestPage(employeeId: widget.employeeId),
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          PpeApprovalScreenSefty(),
+                    ),
+                  );
                 };
                 break;
               case 'รายการอนุมัติคำขอคืน PPE':
                 onTap = () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) =>
-                  //         // ApproveReturnPage(employeeId: widget.employeeId),
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          ReturnRequestList(),
+                    ),
+                  );
                 };
                 break;
               default:
