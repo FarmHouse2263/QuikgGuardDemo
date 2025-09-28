@@ -47,7 +47,9 @@ class ManagementControlScreen extends StatelessWidget {
                 children: [
                   _buildMenuCard(
                     icon: Icons.refresh,
+
                     title: 'คำขอเบิก PPE',
+
                     onTap: () {
                       Navigator.push(
                         context,
@@ -113,71 +115,72 @@ class ManagementControlScreen extends StatelessWidget {
 
           // Bottom Navigation
           // Bottom Navigation
-Container(
-  height: 70,
-  decoration: const BoxDecoration(
-    color: Color(0xFF2C3E50),
-    borderRadius: BorderRadius.only(
-      topLeft: Radius.circular(20),
-      topRight: Radius.circular(20),
-    ),
-  ),
-  child: Row(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-      // Home icon
-      GestureDetector(
-        onTap: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SecurityGuard(employeeId: employeeId),
+          Container(
+            height: 70,
+            decoration: const BoxDecoration(
+              color: Color(0xFF2C3E50),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
             ),
-          );
-        },
-        child: Container(
-          width: 50,
-          height: 50,
-          decoration: const BoxDecoration(
-            color: Color(0xFF2C3E50),
-            shape: BoxShape.circle,
-          ),
-          child: const Icon(
-            Icons.home,
-            color: Colors.white,
-            size: 34,
-          ),
-        ),
-      ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // Home icon
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            SecurityGuard(employeeId: employeeId),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF2C3E50),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.home,
+                      color: Colors.white,
+                      size: 34,
+                    ),
+                  ),
+                ),
 
-      // Profile icon
-      GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ProfilePage(employeeId: employeeId),
+                // Profile icon
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ProfilePage(employeeId: employeeId),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF2C3E50),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.person_outline,
+                      color: Colors.white,
+                      size: 34,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          );
-        },
-        child: Container(
-          width: 50,
-          height: 50,
-          decoration: const BoxDecoration(
-            color: Color(0xFF2C3E50),
-            shape: BoxShape.circle,
           ),
-          child: const Icon(
-            Icons.person_outline,
-            color: Colors.white,
-            size: 34,
-          ),
-        ),
-      ),
-    ],
-  ),
-),
-
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:quikguardtrue/pages/sefty/security_guard/security_guard.dart';
+import 'dart:developer';
 
 class JobTitleScreen extends StatefulWidget {
   final String employeeId;
@@ -15,6 +16,21 @@ class _JobTitleScreenState extends State<JobTitleScreen> {
   String userPosition = '';
   bool isLoading = true;
 
+  // 🟢 Map ตำแหน่ง Firestore → ชื่อเต็มที่ใช้ในปุ่ม
+  final Map<String, String> positionMapping = {
+    'จป': 'จป.วิชาชีพ',
+    'จปวิชาชีพ': 'จป.วิชาชีพ',
+    'จป.วิชาชีพ': 'จป.วิชาชีพ',
+    'หน.ฝ่ายผลิต': 'หน.ฝ่ายผลิต',
+    'หน.ฝ่ายควบคุมคุณภาพ': 'หน.ฝ่ายควบคุมคุณภาพ',
+    'หน.ฝ่ายวิศวกรรม': 'หน.ฝ่ายวิศวกรรม',
+    'หน.ฝ่ายคลังสินค้า': 'หน.ฝ่ายคลังสินค้า',
+    'หน.ฝ่ายก่อสร้าง': 'หน.ฝ่ายก่อสร้าง',
+    'หน.ฝ่ายซ่อมบำรุง': 'หน.ฝ่ายซ่อมบำรุง',
+    'หน.ฝ่ายพัสดุ': 'หน.ฝ่ายพัสดุ',
+  };
+
+  // 🟢 ปุ่มตำแหน่งทั้งหมด
   final List<String> jobTitles = [
     'จป.วิชาชีพ',
     'หน.ฝ่ายผลิต',
@@ -41,12 +57,15 @@ class _JobTitleScreenState extends State<JobTitleScreen> {
 
     if (query.docs.isNotEmpty) {
       final data = query.docs.first.data();
+      String firestorePosition = (data['position'] ?? '').trim();
+
       setState(() {
-        userPosition = (data['position'] ?? '').trim();
+        // 🟢 แปลงตำแหน่งจาก Firestore ให้ตรงกับปุ่ม
+        userPosition = positionMapping[firestorePosition] ?? firestorePosition;
         isLoading = false;
       });
-      // เช็คค่าที่ดึงมาจาก Firestore
-      print('User position from Firestore: "$userPosition"');
+
+      log('User position from Firestore: "$firestorePosition" => mapped: "$userPosition"');
     } else {
       setState(() {
         userPosition = '';
@@ -80,7 +99,7 @@ class _JobTitleScreenState extends State<JobTitleScreen> {
               ),
               const SizedBox(height: 30),
 
-              // Job Title
+              // Title
               const Center(
                 child: Text(
                   'Job Title',
@@ -93,7 +112,7 @@ class _JobTitleScreenState extends State<JobTitleScreen> {
               ),
               const SizedBox(height: 30),
 
-              // Job buttons
+              // ปุ่มตำแหน่งงาน
               ...jobTitles.map((title) => Padding(
                     padding: const EdgeInsets.only(bottom: 15),
                     child: _buildJobButton(title),
@@ -134,12 +153,14 @@ class _JobTitleScreenState extends State<JobTitleScreen> {
   }
 
   Widget _buildJobButton(String title) {
-    // ตัดช่องว่างทั้งหมดและแปลงเป็นตัวพิมพ์เล็ก
+    // normalize → ตัดช่องว่าง + lowercase
     String normalizedTitle = title.replaceAll(RegExp(r'\s+'), '').toLowerCase();
     String normalizedUserPosition =
         userPosition.replaceAll(RegExp(r'\s+'), '').toLowerCase();
 
     bool allowed = normalizedTitle == normalizedUserPosition;
+
+    log('compare $normalizedTitle vs $normalizedUserPosition => allowed: $allowed');
 
     return Center(
       child: SizedBox(
@@ -157,11 +178,11 @@ class _JobTitleScreenState extends State<JobTitleScreen> {
                     ),
                   );
                 }
-              : null, // ปิดปุ่มถ้าไม่ใช่ตำแหน่งตัวเอง
+              : null,
           style: ElevatedButton.styleFrom(
             backgroundColor: allowed
                 ? const Color.fromARGB(255, 23, 36, 62)
-                : Colors.grey[400], // ปุ่ม disable สีเทา
+                : Colors.grey[400],
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(25),
             ),

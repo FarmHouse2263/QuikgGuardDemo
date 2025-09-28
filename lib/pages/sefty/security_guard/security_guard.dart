@@ -390,7 +390,7 @@ class _SecurityGuardState extends State<SecurityGuard> {
                         padding: const EdgeInsets.symmetric(vertical: 15),
                       ),
                       child: const Text(
-                        'เมนูเพิ่มเติม',
+                        'Stock/Input',
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.white,
@@ -625,7 +625,7 @@ class _SecurityGuardState extends State<SecurityGuard> {
                 }
 
                 bool isProfessional = userPosition.toLowerCase().contains(
-                  'จป',
+                  'จป.วิชาชีพ',
                 ); // ตรวจสอบคำหลัก จป.
 
                 return Stack(
